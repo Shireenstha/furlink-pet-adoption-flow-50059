@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import { ArrowLeft, Heart, Star, Shield, Send, CheckCircle } from "lucide-react";
+import { ArrowLeft, Heart, Star, Shield, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -52,7 +52,6 @@ const ContactCaregiver = () => {
   const navigate = useNavigate();
   const pet = petData[id || ""];
   
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -74,7 +73,8 @@ const ContactCaregiver = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    // Navigate to success page with message type
+    navigate(`/success?type=message&petId=${id}&petName=${encodeURIComponent(pet.name)}&caregiverName=${encodeURIComponent(pet.caregiver.name)}`);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -84,33 +84,6 @@ const ContactCaregiver = () => {
     });
   };
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="max-w-md w-full text-center">
-          <CardContent className="pt-8 pb-8">
-            <div className="mb-6 flex justify-center">
-              <CheckCircle className="h-24 w-24 text-secondary animate-scale-in" />
-            </div>
-            <h1 className="text-2xl font-bold text-foreground mb-4">
-              Message Sent!
-            </h1>
-            <p className="text-muted-foreground mb-6">
-              Your message has been sent to {pet.caregiver.name}. They'll respond to you soon via email.
-            </p>
-            <div className="flex flex-col gap-3">
-              <Button onClick={() => navigate(`/pet/${id}`)} variant="default">
-                Back to Pet Profile
-              </Button>
-              <Button onClick={() => navigate("/adoption")} variant="outline">
-                Browse More Pets
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">

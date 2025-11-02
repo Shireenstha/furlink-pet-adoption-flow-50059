@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import { ArrowLeft, Heart, MapPin, Calendar, CheckCircle } from "lucide-react";
+import { ArrowLeft, Heart, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -41,7 +41,6 @@ const RequestToAdopt = () => {
   const navigate = useNavigate();
   const pet = petData[id || ""];
   
-  const [submitted, setSubmitted] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -70,7 +69,8 @@ const RequestToAdopt = () => {
       alert("Please agree to the terms and conditions");
       return;
     }
-    setSubmitted(true);
+    // Navigate to success page with adoption type
+    navigate(`/success?type=adoption&petId=${id}&petName=${encodeURIComponent(pet.name)}&caregiverName=${encodeURIComponent("the caregiver")}`);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -80,39 +80,6 @@ const RequestToAdopt = () => {
     });
   };
 
-  if (submitted) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="max-w-md w-full text-center">
-          <CardContent className="pt-8 pb-8">
-            <div className="mb-6 flex justify-center">
-              <div className="relative">
-                <Heart className="h-24 w-24 text-primary fill-current animate-scale-in" />
-                <div className="absolute inset-0 animate-pulse">
-                  <Heart className="h-24 w-24 text-primary/30 fill-current" />
-                </div>
-              </div>
-            </div>
-            <h1 className="text-2xl font-bold text-foreground mb-4">
-              Request Sent Successfully!
-            </h1>
-            <p className="text-muted-foreground mb-6">
-              Your adoption request for {pet.name} has been sent to the caregiver. 
-              They'll review your application and respond within 24 hours.
-            </p>
-            <div className="flex flex-col gap-3">
-              <Button onClick={() => navigate(`/pet/${id}`)} variant="default">
-                Back to Pet Profile
-              </Button>
-              <Button onClick={() => navigate("/adoption")} variant="outline">
-                Browse More Pets
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">

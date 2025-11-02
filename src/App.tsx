@@ -10,6 +10,7 @@ import Adoption from "@/pages/Adoption";
 import PetProfile from "@/pages/PetProfile";
 import RequestToAdopt from "@/pages/RequestToAdopt";
 import ContactCaregiver from "@/pages/ContactCaregiver";
+import SubmissionSuccess from "@/pages/SubmissionSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="pet/:id" element={<PetProfile />} />
             <Route path="pet/:id/request-adopt" element={<RequestToAdopt />} />
             <Route path="pet/:id/contact" element={<ContactCaregiver />} />
+            <Route path="success" element={<SubmissionSuccess />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
