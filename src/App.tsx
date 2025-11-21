@@ -16,6 +16,10 @@ import Dashboard from "@/pages/admin/Dashboard";
 import PetsList from "@/pages/admin/PetsList";
 import UsersList from "@/pages/admin/UsersList";
 import ContactMessages from "@/pages/admin/ContactMessages";
+import Adoptions from "@/pages/admin/Adoptions";
+import Categories from "@/pages/admin/Categories";
+import Payments from "@/pages/admin/Payments";
+import Logout from "@/pages/admin/Logout";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +45,10 @@ const App = () => (
             <Route index element={<Dashboard />} />
             <Route path="pets" element={<PetsList />} />
             <Route path="users" element={<UsersList />} />
+            <Route path="adoptions" element={<Adoptions />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="contact-messages" element={<ContactMessages />} />
           </Route>
           
