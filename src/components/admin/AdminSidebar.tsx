@@ -1,16 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Users, Shield, MessageSquare, Image, Heart, ShoppingCart, Settings } from "lucide-react";
+import { Home, Users, Heart, ShoppingBag, Package, DollarSign, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { name: "Dashboard", icon: Home, path: "/admin" },
   { name: "Users", icon: Users, path: "/admin/users" },
-  { name: "Auth & Groups", icon: Shield, path: "/admin/groups" },
-  { name: "Contact", icon: MessageSquare, path: "/admin/contact-messages" },
-  { name: "Gallery", icon: Image, path: "/admin/pet-images" },
   { name: "Pets", icon: Heart, path: "/admin/pets" },
-  { name: "Shop", icon: ShoppingCart, path: "/admin/shop/products" },
-  { name: "Settings", icon: Settings, path: "/admin/settings" },
+  { name: "Adoptions", icon: ShoppingBag, path: "/admin/adoptions" },
+  { name: "Categories", icon: Package, path: "/admin/categories" },
+  { name: "Payments", icon: DollarSign, path: "/admin/payments" },
+  { name: "Logout", icon: LogOut, path: "/admin/logout" },
 ];
 
 const AdminSidebar = () => {
