@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Heart } from "lucide-react";
+import { Menu, X, Heart, Shield } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,6 +45,15 @@ const Header = () => {
               }`}
             >
               Adoption
+            </Link>
+            <Link 
+              to="/admin" 
+              className={`font-medium transition-all duration-300 hover:text-primary flex items-center gap-1 ${
+                location.pathname.startsWith('/admin') ? 'text-primary border-b-2 border-primary' : 'text-foreground'
+              }`}
+            >
+              <Shield className="h-4 w-4" />
+              Admin
             </Link>
           </nav>
           
@@ -94,6 +103,16 @@ const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Adoption
+              </Link>
+              <Link 
+                to="/admin" 
+                className={`font-medium py-2 transition-colors flex items-center gap-2 ${
+                  location.pathname.startsWith('/admin') ? 'text-primary' : 'text-foreground hover:text-primary'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Shield className="h-4 w-4" />
+                Admin
               </Link>
               <Link 
                 to="/adoption" 
